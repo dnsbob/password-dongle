@@ -17,6 +17,9 @@ import usb_hid
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 
+import random
+
+key="password"
 
 # constants
 tick = 0.1
@@ -35,15 +38,72 @@ action = ["up", "down", "enter"]
 
 data = [
     "work",
-    ["rharolde", "xxxx", "back", "back"],
+    ["rharolde", "rHDF1H.!O#3%8E+n.N>)f", "back", "back"],
     "home",
-    ["rharold", "yyyy", "back", "back"],
+    ["rharold", "rHDF1H.!O#3%8E+n.N>)f", "back", "back"],
     "play",
-    ["minecraft", ["dnsbob", "zzzz", "back", ""], "back", ""],
+    ["minecraft", ["dnsbob", "rHDF1H.!O#3%8E+n.N>)f", "back", ""], "back", ""],
 ]
 
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayoutUS(kbd)
+
+# all printable ascii chars, plus space, except double quote, tab, backslash
+mychars="`aZ0+nM<bY1!oL>cX2@pK;dW3#qJ:eV4$rI'fU5%sH[gT6^tG]hS7&uF{iR8*vE}jQ9(wD-kP,)xC=lO.~yB_mN/ zA"
+mylen=len(mychars)
+# direction values
+ENCRYPT=+1
+DECRYPT=-1
+
+
+
+def code2indexlist(key):
+    # turn key into list of indexes
+    keyi=[]
+    for k in range(len(key)):
+        keyi.append(mychars.index(key[k]))
+    return keyi
+
+def cryptchar(inchar,keyoffset,direction):
+    try:
+        charindex=mychars.index(inchar)
+        encind=(charindex+direction*keyoffset)%mylen
+        outchar=mychars[encind]
+    except ValueError:
+        print("invalid character used?")
+        outchar="invalid"
+    return outchar
+
+def cryptstring(instring,keyi,direction):
+    outstring=""
+    keylen=len(keyi)
+    keyindex=1%keylen   # allow 1 char key (even if not recommended)
+    for eachchar in instring:
+        keyoffset=keyi[keyindex]
+        outletter=cryptchar(eachchar,keyoffset,direction)
+        outstring+=outletter
+        keyindex = (keyindex+1) % keylen
+    return outstring
+
+print("tinydecrypt")
+
+def tinydecrypt(code,key):
+    try:
+        keyi = code2indexlist(key)
+        codelen=len(code)
+        keylen=len(keyi)
+        eachchar=code[0]
+        keyoffset=keyi[0]
+        lencode=cryptchar(eachchar,keyoffset,DECRYPT)
+        totlen=mychars.index(lencode)
+        encind=mychars.index(code[0])
+        textlen=(totlen-keylen+mylen)%mylen
+        plain=cryptstring(code[1:textlen+1],keyi,DECRYPT)
+    except ValueError:
+        print("invalid character used?")
+        plain="invalid"
+    return plain
+
 
 # variables
 current = data
@@ -78,8 +138,10 @@ while True:
                     current = stack.pop()
                     c = current[i]
             else:
+                #z="password:" + v
+                z=plain=tinydecrypt(v,key)
                 # print(v,end='')
-                layout.write(v)
+                layout.write(z)
                 old = c
         elif type(v) == type(["list"]):
             old = current[i]
