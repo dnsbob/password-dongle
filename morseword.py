@@ -2,7 +2,7 @@
 
 import time
 
-def morseword(buttons, dot):
+def morseword(buttons):
     sleep=.01
     # note that Morse code does not have separate uppercase and lowercase
     asciinum2morse=[
@@ -70,12 +70,6 @@ def morseword(buttons, dot):
                                 disp="#"
                             chars.append(disp)
                             #print('found:',dotdash, char, disp)
-                            dot[0] = (0,0,0) # off
-                            time.sleep(.2)
-                            if char:
-                                dot[0]=(0,255,0) # green
-                            else:
-                                dot[0]=(255,0,0) # red
                         else:
                             run=0
                     while button.value:
