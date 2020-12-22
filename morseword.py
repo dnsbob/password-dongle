@@ -53,10 +53,10 @@ def morseword(buttons):
                 if buttonnew==True:
                     if i == 0:  # dot
                         dotdashlist.append(".")
-                        print(".",end="")
+                        #print(".",end="")
                     elif i==1:  # dash
                         dotdashlist.append("-")
-                        print("-",end="")
+                        #print("-",end="")
                     else:       # space
                         if dotdashlist:
                             dotdash="".join(dotdashlist)

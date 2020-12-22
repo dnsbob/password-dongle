@@ -38,5 +38,6 @@ gc.collect()
 #print("free after gc:",gc.mem_free())
 import pwmenu
 #print("free after pwmenu import:",gc.mem_free())
+#print("run pwmenu")
 pwmenu.menu(key, buttons)
 #print("free after pwmenu:",gc.mem_free())

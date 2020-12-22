@@ -67,6 +67,7 @@ def tinydecrypt(code,key):
     return plain
 
 def menu(key,buttons):
+    #print("starting pwmenu")
     # constants
     tick = 0.1
     bsp = chr(8) + " " + chr(8)  # backspace and overwrite with backspace
@@ -80,7 +81,7 @@ def menu(key,buttons):
         "play",
         ["minecraft", ["dnsbob", "rHDF1H.!O#3%8E+n.N>)f", "back", ""], "back", ""],
     ]
-
+    #print(data[4])
     # variables
     current = data
     stack = []
