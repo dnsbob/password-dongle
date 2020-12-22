@@ -96,10 +96,8 @@ def menu(key,buttons):
             for button_num, button in enumerate(buttons):
                 if button.value:
                     button_press = 1
-                    dot[0] = (0, 0, 0)  # off
                     break
             time.sleep(tick)  # only if no button
-        dot[0] = (0, 255, 0)  # green
         c = current[i]
         if action[button_num] == "down":
             i = (i + 2) % len(current)  # wrap at ends
