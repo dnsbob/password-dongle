@@ -16,3 +16,8 @@ The threebuttonmorsecode.py version
 
 tiny encryption  
 https://github.com/dnsbob/tinyencrypt  
+
+2020-12-26 Finally fully functional
+todo:
+- document the hardware (which button is which pin)
+- pictures of the hardware
