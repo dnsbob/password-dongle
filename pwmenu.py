@@ -72,15 +72,8 @@ def menu(key,buttons):
     tick = 0.1
     bsp = chr(8) + " " + chr(8)  # backspace and overwrite with backspace
     action = ["up", "down", "enter"]
-
-    data = [
-        "work",
-        ["rharolde", "rHDF1H.!O#3%8E+n.N>)f", "back", "back"],
-        "home",
-        ["rharold", "rHDF1H.!O#3%8E+n.N>)f", "back", "back"],
-        "play",
-        ["minecraft", ["dnsbob", "rHDF1H.!O#3%8E+n.N>)f", "back", ""], "back", ""],
-    ]
+    import datafile
+    data=datafile.data
     #print(data[4])
     # variables
     current = data
@@ -113,8 +106,8 @@ def menu(key,buttons):
                         current = stack.pop()
                         c = current[i]
                 else:
-                    z="password:" + v
-                    #z=plain=tinydecrypt(v,key)
+                    #z="password:" + v
+                    z=tinydecrypt(v,key)
                     # print(v,end='')
                     layout.write(z)
                     old = c
