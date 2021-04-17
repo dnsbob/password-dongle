@@ -43,7 +43,7 @@ def morseword(buttons):
     chars=[]
     dotdashlist=[]  # more efficient to add to a list of characters and join at the end
     buttonprev={}
-    run=1
+    run=True
     while run:
         for i,button in enumerate(buttons):
             buttonnew=button.value
@@ -71,7 +71,8 @@ def morseword(buttons):
                             chars.append(disp)
                             #print('found:',dotdash, char, disp)
                         else:
-                            run=0
+                            if chars: # ignore if no password entered
+                                run=False
                     while button.value:
                         time.sleep(sleep)   # wait for button to be released
         time.sleep(sleep)   # debounce
