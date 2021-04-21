@@ -106,11 +106,13 @@ def menu(key,buttons):
                         current = stack.pop()
                         c = current[i]
                 else:
-                    #z="password:" + v
+                    # password
                     z=tinydecrypt(v,key)
                     # print(v,end='')
+                    layout.write("".join([bsp for x in range(len(old))]))  # erase
                     layout.write(z)
-                    old = c
+                    layout.write('\n')
+                    #old = c
                     #return # testing memory use - debug
             elif type(v) == type(["list"]):
                 old = current[i]
