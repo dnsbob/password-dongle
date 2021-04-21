@@ -1,0 +1,30 @@
+data=[
+    "work",
+    [
+        "barney",
+        "xxxxxxxxxxxxxxxxxx",
+        "back",
+        ""
+    ],
+    "home",
+    [
+        "rubble",
+        "xxxxxxxxxxxxxxxxxx",
+        "back",
+        ""
+    ],
+    "play",
+    [
+        "minecraft",
+        [
+            "digger1234509",
+            "xxxxxxxxxxxxxxxxxx",
+            "back",
+            ""
+        ],
+        "test",
+        "xxxxxxxxxxxxxxxxxx",
+        "back",
+        ""
+    ]
+]
